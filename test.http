@@ -1,0 +1,56 @@
+### 1. CREATE - Tạo kho hàng 1
+POST http://localhost:8083/api/inventories
+Content-Type: application/json
+
+{
+  "skuCode": "IPHONE_15_PRO",
+  "stockQuantity": 50,
+  "warehouseLocation": "Kho Miền Bắc"
+}
+
+### 2. CREATE - Tạo kho hàng 2
+POST http://localhost:8083/api/inventories
+Content-Type: application/json
+
+{
+  "skuCode": "MACBOOK_PRO_M3",
+  "stockQuantity": 20,
+  "warehouseLocation": "Kho Miền Nam"
+}
+
+### 3. CREATE - Tạo kho hàng 3
+POST http://localhost:8083/api/inventories
+Content-Type: application/json
+
+{
+  "skuCode": "AIRPODS_PRO_2",
+  "stockQuantity": 100,
+  "warehouseLocation": "Kho Miền Trung"
+}
+
+
+### 4. READ - Lấy danh sách tất cả kho hàng
+GET http://localhost:8083/api/inventories
+
+
+### 5. READ - Lấy chi tiết kho hàng theo ID (giả sử ID = 1)
+GET http://localhost:8083/api/inventories/1
+
+
+### 6. UPDATE - Cập nhật kho hàng có ID = 1
+PUT http://localhost:8083/api/inventories/1
+Content-Type: application/json
+
+{
+  "skuCode": "IPHONE_15_PRO_MAX",
+  "stockQuantity": 45,
+  "warehouseLocation": "Kho Miền Bắc - Cập nhật"
+}
+
+
+### 7. DELETE - Xóa kho hàng có ID = 3
+DELETE http://localhost:8083/api/inventories/3
+
+
+docker build -t your-dockerhub-username/inventory-service:latest .
+docker push your-dockerhub-username/inventory-service:latest
