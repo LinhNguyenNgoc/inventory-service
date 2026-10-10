@@ -28,3 +28,11 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Repository Dispatch to GitOps Repo
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.STUDY }}
+          repository: ${{ github.actor }}/gitops-manifests
+          event-type: update-inventory-service-image
+          client-payload: '{"image_tag": "${{ github.run_number }}", "service_name": "${{ env.IMAGE_NAME }}"}'
